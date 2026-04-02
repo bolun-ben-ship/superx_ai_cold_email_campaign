@@ -5,91 +5,109 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SuperX — Campaign Proposal · RightClick:AI</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
   /* ── Reset & base ── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --brand:       #0057FF;
-    --brand-light: #EBF1FF;
-    --accent:      #FF4B2B;
-    --ink:         #111218;
-    --muted:       #5B5F6E;
-    --line:        #DDE1EC;
-    --surface:     #F7F8FB;
-    --white:       #FFFFFF;
+    --brand:       #4f46e5;
+    --brand-light: #e0e7ff;
+    --accent:      #1e1b4b;
+    --ink:         #0f172a;
+    --muted:       #64748b;
+    --line:        #e2e8f0;
+    --surface:     #f8fafc;
+    --white:       #ffffff;
 
-    --font-body:   'Inter', 'Helvetica Neue', Arial, sans-serif;
-    --page-w:      794px;   /* A4 at 96 dpi */
-    --gutter:      56px;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body:    'Montserrat', sans-serif;
+    --font-mono:    'JetBrains Mono', monospace;
+    --page-w:      900px;
+    --gutter:      64px;
+    --radius:      10px;
   }
 
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-  html { font-size: 15px; color: var(--ink); font-family: var(--font-body); }
+  html { font-size: 15px; color: var(--ink); font-family: var(--font-body); background: var(--surface); }
 
   body {
     background: var(--white);
     max-width: var(--page-w);
-    margin: 0 auto;
+    margin: 40px auto;
+    border-radius: var(--radius);
+    box-shadow: 0 12px 48px rgba(0,0,0,0.08);
     -webkit-font-smoothing: antialiased;
   }
 
   /* ── Page layout ── */
   .page {
-    padding: 56px var(--gutter) 64px;
-    border-bottom: 1px solid var(--line);
-    page-break-after: always;
-    overflow: hidden;
+    padding: 0 var(--gutter) 64px;
   }
-  .page:last-child { border-bottom: none; page-break-after: auto; }
+  .page:last-of-type {
+    padding-bottom: 80px;
+  }
 
-  /* ── Cover page ── */
-  .cover {
-    background: var(--ink);
-    color: var(--white);
-    min-height: 200px;
-    padding: 64px var(--gutter) 56px;
-    border-bottom: 3px solid var(--brand);
+  /* ── Visual break ── */
+  .visual-break {
+    border: none;
+    height: 4px;
+    background: var(--brand-light);
+    margin: 40px 0 80px;
+    width: 100%;
+    position: relative;
   }
-  .cover-eyebrow {
+  .visual-break::after {
+    content: 'DETAILED METHODOLOGY';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--brand);
+    color: var(--white);
+    padding: 10px 24px;
+    border-radius: 30px;
     font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,.45);
-    margin-bottom: 24px;
-  }
-  .cover-title {
-    font-size: 32px;
     font-weight: 800;
-    line-height: 1.15;
-    margin-bottom: 12px;
-    color: var(--white);
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
   }
-  .cover-subtitle {
-    font-size: 16px;
-    color: rgba(255,255,255,.65);
-    max-width: 560px;
-    line-height: 1.6;
-    margin-bottom: 40px;
+
+  /* ── Masthead (Hero Redesign) ── */
+  .masthead {
+    border-bottom: 3px solid var(--accent);
+    padding: 64px var(--gutter) 32px;
+    margin-bottom: 48px;
   }
-  .cover-meta {
-    font-size: 12px;
-    color: rgba(255,255,255,.35);
-    border-top: 1px solid rgba(255,255,255,.12);
-    padding-top: 20px;
+  .client-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--brand); margin-bottom: 12px;
   }
+  .masthead-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+  .masthead h1 {
+    font-size: clamp(26px, 4vw, 44px); font-weight: 800;
+    line-height: 1.1; color: var(--accent); letter-spacing: -1.5px;
+  }
+  .masthead h1 span { color: var(--brand); }
+  .masthead-right { text-align: right; flex-shrink: 0; }
+  .masthead-right .date { font-size: 13px; font-weight: 600; color: var(--accent); display: block; margin-bottom: 6px; }
+  .doc-badge {
+    display: inline-block; background: var(--accent); color: #fff;
+    border-radius: 6px; padding: 3px 10px;
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .masthead-sub { font-size: 14px; color: var(--muted); margin-top: 12px; line-height: 1.6; max-width: 640px; }
 
   /* ── Section header ── */
   .section-header {
     margin-bottom: 32px;
     padding-bottom: 16px;
-    border-bottom: 2px solid var(--line);
+    border-bottom: 1px solid var(--line);
   }
   .section-eyebrow {
     font-size: 10px;
     font-weight: 700;
-    letter-spacing: .14em;
+    letter-spacing: .15em;
     text-transform: uppercase;
     color: var(--brand);
     margin-bottom: 8px;
@@ -97,327 +115,283 @@
   .section-title {
     font-size: 22px;
     font-weight: 800;
-    color: var(--ink);
+    color: var(--accent);
     line-height: 1.2;
+    margin-bottom: 12px;
   }
   .section-lead {
     font-size: 14px;
     color: var(--muted);
     line-height: 1.65;
-    max-width: 600px;
-    margin-top: 10px;
+    max-width: 640px;
   }
 
   /* ── Callout cards ── */
-  .callout-grid { display: flex; flex-direction: column; gap: 14px; }
+  .callout-grid { display: grid; gap: 16px; }
 
   .callout {
-    background: var(--surface);
-    border-left: 3px solid var(--brand);
-    border-radius: 6px;
-    padding: 18px 22px;
-    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
   }
+  .callout:hover { border-color: var(--brand); }
   .callout-numbered {
     display: flex;
-    gap: 18px;
+    gap: 20px;
     align-items: flex-start;
   }
   .callout-num {
     flex-shrink: 0;
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     background: var(--brand);
     color: var(--white);
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 800;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 4px;
-    margin-top: 1px;
+    border-radius: 6px;
   }
-  .callout-body {
-    flex: 1;
-    min-width: 0;
-    overflow-wrap: break-word;
-    word-break: break-word;
-  }
+  .callout-body { flex: 1; }
   .callout-title {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 6px;
+    color: var(--accent);
+    margin-bottom: 8px;
   }
   .callout-text {
-    font-size: 13px;
+    font-size: 13.5px;
     color: var(--muted);
-    line-height: 1.65;
+    line-height: 1.7;
   }
 
   /* Accent callout (highlight box) */
   .callout-accent {
     background: var(--brand-light);
-    border-left-color: var(--brand);
-    font-size: 13px;
+    border-color: rgba(79, 70, 229, 0.2);
+    font-size: 14px;
     font-weight: 500;
-    color: var(--ink);
-    line-height: 1.65;
+    color: var(--brand);
+    line-height: 1.7;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: var(--radius);
+    padding: 16px 24px;
   }
 
   /* ── Persona cards ── */
-  .persona-grid { display: flex; flex-direction: column; gap: 18px; }
+  .persona-grid { display: grid; gap: 20px; }
 
   .persona-card {
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: var(--radius);
     overflow: hidden;
+    background: var(--white);
   }
   .persona-header {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 14px 20px;
+    gap: 16px;
+    padding: 16px 24px;
     background: var(--surface);
     border-bottom: 1px solid var(--line);
   }
   .persona-icon {
     font-size: 20px;
-    line-height: 1;
+    width: 40px;
+    height: 40px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
   }
   .persona-name {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--ink);
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--accent);
   }
   .persona-roles {
-    font-size: 11.5px;
+    font-size: 11px;
+    font-weight: 600;
     color: var(--muted);
     margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
-  .persona-body { padding: 16px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .persona-body { padding: 20px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   .persona-col-label {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--brand);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   .persona-col-text {
-    font-size: 12.5px;
+    font-size: 13px;
     color: var(--muted);
-    line-height: 1.6;
-    overflow-wrap: break-word;
-    word-break: break-word;
+    line-height: 1.7;
   }
   .persona-sample {
-    padding: 12px 20px 16px;
-    background: #FAFBFE;
+    padding: 16px 24px;
+    background: var(--surface);
     border-top: 1px solid var(--line);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 20px;
   }
   .sample-label {
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
   .sample-text {
     font-size: 12px;
     color: var(--ink);
-    line-height: 1.55;
+    line-height: 1.6;
     font-style: italic;
-    overflow-wrap: break-word;
-    word-break: break-word;
+    font-family: var(--font-mono);
   }
 
-  /* ── Sequence table ── */
-  .seq-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-    margin-top: 4px;
-    table-layout: fixed;
-  }
-  .seq-table th {
-    background: var(--ink);
-    color: var(--white);
-    padding: 10px 12px;
-    text-align: left;
-    font-weight: 600;
-    font-size: 11px;
-    letter-spacing: .04em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .seq-table td {
-    padding: 9px 12px;
-    border-bottom: 1px solid var(--line);
-    color: var(--muted);
-    vertical-align: top;
-    line-height: 1.45;
-    overflow-wrap: break-word;
-    word-break: break-word;
-  }
-  .seq-table tr:nth-child(even) td { background: var(--surface); }
-  .seq-table td:first-child {
-    font-weight: 700;
-    color: var(--ink);
-    background: var(--surface) !important;
-    white-space: nowrap;
-  }
-
-  /* ── Week 1 table ── */
-  .week-table {
+  /* ── Tables (Fixing rendering errors) ── */
+  .seq-table, .week-table, .addon-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 12.5px;
-    margin-top: 4px;
-    table-layout: fixed;
+    margin: 16px 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    table-layout: auto; /* Changed to auto to prevent text squeezing */
   }
-  .week-table th {
-    background: var(--ink);
+  .seq-table thead tr, .week-table thead tr, .addon-table thead tr {
+    background: var(--accent);
+  }
+  .seq-table th, .week-table th, .addon-table th {
     color: var(--white);
-    padding: 10px 14px;
+    padding: 14px 16px;
     text-align: left;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .04em;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
   }
-  .week-table th:first-child { width: 100px; }
-  .week-table td {
-    padding: 10px 14px;
+  .seq-table td, .week-table td, .addon-table td {
+    padding: 14px 16px;
     border-bottom: 1px solid var(--line);
     color: var(--muted);
     vertical-align: top;
-    line-height: 1.55;
-    overflow-wrap: break-word;
-    word-break: break-word;
+    line-height: 1.6;
   }
-  .week-table tr:nth-child(even) td { background: var(--surface); }
-  .week-table td:first-child { font-weight: 700; color: var(--brand); }
-
-  /* ── Add-ons table ── */
-  .addon-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-    margin-top: 4px;
-    table-layout: fixed;
+  .seq-table tr:nth-child(even) td, .week-table tr:nth-child(even) td, .addon-table tr:nth-child(even) td { background: var(--surface); }
+  .seq-table td:first-child, .week-table td:first-child {
+    font-weight: 800;
+    color: var(--accent);
+    background: var(--surface);
+    white-space: nowrap;
   }
-  .addon-table colgroup col:nth-child(1) { width: 130px; }
-  .addon-table colgroup col:nth-child(2) { width: 115px; }
-  .addon-table colgroup col:nth-child(3) { width: auto; }
-  .addon-table colgroup col:nth-child(4) { width: 140px; }
-  .addon-table th {
-    background: var(--ink);
-    color: var(--white);
-    padding: 10px 12px;
-    text-align: left;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .04em;
-  }
-  .addon-table td {
-    padding: 10px 12px;
-    border-bottom: 1px solid var(--line);
-    color: var(--muted);
-    vertical-align: top;
-    line-height: 1.5;
-    overflow-wrap: break-word;
-    word-break: break-word;
-  }
-  .addon-table tr:nth-child(even) td { background: var(--surface); }
-  .addon-table td:first-child { font-weight: 600; color: var(--ink); }
-  .addon-table td:nth-child(2) { font-weight: 600; color: var(--brand); white-space: nowrap; }
+  .addon-table td:first-child { font-weight: 800; color: var(--accent); white-space: nowrap; }
+  .addon-table td:nth-child(2) { font-weight: 700; color: var(--brand); font-family: var(--font-mono); }
 
   /* ── Stats strip ── */
   .stats-strip {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-top: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
   }
   .stat-cell {
-    padding: 18px 16px;
-    border-right: 1px solid var(--line);
-    background: var(--surface);
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+    text-align: center;
   }
-  .stat-cell:last-child { border-right: none; }
-  .stat-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 6px; }
-  .stat-value { font-size: 17px; font-weight: 800; color: var(--brand); line-height: 1.2; }
-  .stat-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .stat-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .15em; color: var(--muted); margin-bottom: 8px; }
+  .stat-value { font-size: 24px; font-weight: 900; color: var(--brand); line-height: 1.2; letter-spacing: -1px; }
+  .stat-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
 
   /* ── Footer ── */
   .doc-footer {
-    padding: 20px var(--gutter);
-    background: var(--surface);
-    border-top: 2px solid var(--line);
+    padding: 32px var(--gutter);
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 11px;
     color: var(--muted);
+    background: transparent;
   }
-  .doc-footer strong { color: var(--ink); font-weight: 700; }
+  .doc-footer strong { color: var(--accent); font-weight: 800; }
 
   /* ── Print / PDF rules ── */
   @media print {
-    @page {
-      size: A4;
-      margin: 14mm 14mm 16mm 14mm;
-    }
-
-    body { max-width: 100%; font-size: 11pt; }
-
-    .page {
-      padding: 0 0 24pt;
-      border-bottom: none;
-      page-break-after: always;
-    }
-    .page:last-child { page-break-after: auto; }
-
-    .cover { padding: 40pt 0 36pt; }
-
-    /* prevent orphaned callout titles */
-    .callout, .persona-card, tr { page-break-inside: avoid; }
-
-    /* keep tables together where possible */
-    .seq-table, .week-table, .addon-table { page-break-inside: auto; }
-    thead { display: table-header-group; }
-    tfoot { display: table-footer-group; }
-
-    /* no blue links */
-    a { color: inherit; text-decoration: none; }
-
+    @page { size: A4; margin: 15mm; }
+    body { max-width: 100%; margin: 0; border-radius: 0; box-shadow: none; }
+    .page { border: none; box-shadow: none; padding: 0; margin-bottom: 40px; }
+    .visual-break { page-break-after: always; height: 0; border: none; margin: 0; background: transparent; }
+    .visual-break::after { display: none; }
     .doc-footer { display: none; }
   }
+
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════ COVER ═══ -->
-<div class="cover">
-  <div class="cover-eyebrow">RightClick:AI · Prepared for SuperX AI Technology Limited</div>
-  <div class="cover-title">How We Think About<br>Your Campaign</div>
-  <div class="cover-subtitle">A look inside the process behind the proposal — persona strategy, multi-threading logic, Week 1 execution plan, and add-on modelling.</div>
-  <div class="cover-meta">Prepared by Bolun &nbsp;·&nbsp; March 2026 &nbsp;·&nbsp; Confidential</div>
-</div>
+  <!-- ── Masthead (Redesigned) ── -->
+  <div class="masthead">
+    <div class="client-tag">RightClick:AI · Prepared for SuperX AI Technology Limited</div>
+    <div class="masthead-row">
+      <div>
+        <h1>What Sets Us <span>Apart</span></h1>
+        <p class="masthead-sub">A look inside the process behind the proposal — persona strategy, multi-threading logic, Week 1 execution plan, and add-on modelling.</p>
+      </div>
+      <div class="masthead-right">
+        <span class="date">March 2026</span>
+        <span class="doc-badge">Credibility</span>
+      </div>
+    </div>
+  </div>
 
+<!-- ═══════════════════════════════════════════════ METRICS SUMMARY ═══ -->
+<div class="page" style="padding-bottom: 16px;">
+  <div class="section-eyebrow" style="margin-bottom: 16px;">Projected Indicators</div>
+  <div class="stats-strip" style="margin-top: 0;">
+    <div class="stat-cell">
+      <div class="stat-label">Reply rate (all add-ons)</div>
+      <div class="stat-value">2.0–2.5%</div>
+      <div class="stat-sub">vs 0.8% baseline</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Replies over 6 months</div>
+      <div class="stat-value">300–375</div>
+      <div class="stat-sub">vs 104 baseline</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Meetings booked total</div>
+      <div class="stat-value">120–150</div>
+      <div class="stat-sub">vs 41 baseline</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Per rep / week (4 reps)</div>
+      <div class="stat-value">3.1–3.9</div>
+      <div class="stat-sub">vs 1.08 baseline</div>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════════════ SECTION 1 ═══ -->
 <div class="page">
   <div class="section-header">
-    <div class="section-eyebrow">Differentiators</div>
-    <div class="section-title">What Sets Us Apart</div>
+    <div class="section-eyebrow">How we do it</div>
+    <div class="section-title">Campaign Strategy</div>
     <div class="section-lead">How our approach differs — and what SuperX gets from it.</div>
   </div>
 
@@ -470,6 +444,7 @@
   </div>
 </div>
 
+<div class="visual-break"></div>
 
 <!-- ═══════════════════════════════════════════════ SECTION 2 ═══ -->
 <div class="page">
@@ -798,13 +773,8 @@
   </div>
 
   <table class="addon-table">
-    <colgroup>
-      <col>
-      <col>
-      <col>
-      <col>
-    </colgroup>
     <thead>
+
       <tr>
         <th>Add-On</th>
         <th>Fee (SGD)</th>
@@ -852,7 +822,7 @@
       <div class="stat-sub">vs 104 baseline</div>
     </div>
     <div class="stat-cell">
-      <div class="stat-label">Meetings booked</div>
+      <div class="stat-label">Meetings booked total</div>
       <div class="stat-value">120–150</div>
       <div class="stat-sub">vs 41 baseline</div>
     </div>
