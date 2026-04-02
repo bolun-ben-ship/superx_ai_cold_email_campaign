@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SuperX — Campaign Proposal · RightClick:AI</title>
+<style>
+  /* ── Reset & base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --brand:       #0057FF;
+    --brand-light: #EBF1FF;
+    --accent:      #FF4B2B;
+    --ink:         #111218;
+    --muted:       #5B5F6E;
+    --line:        #DDE1EC;
+    --surface:     #F7F8FB;
+    --white:       #FFFFFF;
+
+    --font-body:   'Inter', 'Helvetica Neue', Arial, sans-serif;
+    --page-w:      794px;   /* A4 at 96 dpi */
+    --gutter:      56px;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  html { font-size: 15px; color: var(--ink); font-family: var(--font-body); }
+
+  body {
+    background: var(--white);
+    max-width: var(--page-w);
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Page layout ── */
+  .page {
+    padding: 56px var(--gutter) 64px;
+    border-bottom: 1px solid var(--line);
+    page-break-after: always;
+    overflow: hidden;
+  }
+  .page:last-child { border-bottom: none; page-break-after: auto; }
+
+  /* ── Cover page ── */
+  .cover {
+    background: var(--ink);
+    color: var(--white);
+    min-height: 200px;
+    padding: 64px var(--gutter) 56px;
+    border-bottom: 3px solid var(--brand);
+  }
+  .cover-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.45);
+    margin-bottom: 24px;
+  }
+  .cover-title {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+  .cover-subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,.65);
+    max-width: 560px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  .cover-meta {
+    font-size: 12px;
+    color: rgba(255,255,255,.35);
+    border-top: 1px solid rgba(255,255,255,.12);
+    padding-top: 20px;
+  }
+
+  /* ── Section header ── */
+  .section-header {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--line);
+  }
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .section-lead {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 600px;
+    margin-top: 10px;
+  }
+
+  /* ── Callout cards ── */
+  .callout-grid { display: flex; flex-direction: column; gap: 14px; }
+
+  .callout {
+    background: var(--surface);
+    border-left: 3px solid var(--brand);
+    border-radius: 6px;
+    padding: 18px 22px;
+    overflow: hidden;
+  }
+  .callout-numbered {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+  .callout-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: var(--brand);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    margin-top: 1px;
+  }
+  .callout-body {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .callout-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .callout-text {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* Accent callout (highlight box) */
+  .callout-accent {
+    background: var(--brand-light);
+    border-left-color: var(--brand);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.65;
+  }
+
+  /* ── Persona cards ── */
+  .persona-grid { display: flex; flex-direction: column; gap: 18px; }
+
+  .persona-card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .persona-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+  }
+  .persona-icon {
+    font-size: 20px;
+    line-height: 1;
+  }
+  .persona-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .persona-roles {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .persona-body { padding: 16px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .persona-col-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 6px;
+  }
+  .persona-col-text {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .persona-sample {
+    padding: 12px 20px 16px;
+    background: #FAFBFE;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .sample-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .sample-text {
+    font-size: 12px;
+    color: var(--ink);
+    line-height: 1.55;
+    font-style: italic;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* ── Sequence table ── */
+  .seq-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 4px;
+    table-layout: fixed;
+  }
+  .seq-table th {
+    background: var(--ink);
+    color: var(--white);
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: .04em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .seq-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    vertical-align: top;
+    line-height: 1.45;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .seq-table tr:nth-child(even) td { background: var(--surface); }
+  .seq-table td:first-child {
+    font-weight: 700;
+    color: var(--ink);
+    background: var(--surface) !important;
+    white-space: nowrap;
+  }
+
+  /* ── Week 1 table ── */
+  .week-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    margin-top: 4px;
+    table-layout: fixed;
+  }
+  .week-table th {
+    background: var(--ink);
+    color: var(--white);
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .04em;
+  }
+  .week-table th:first-child { width: 100px; }
+  .week-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    vertical-align: top;
+    line-height: 1.55;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .week-table tr:nth-child(even) td { background: var(--surface); }
+  .week-table td:first-child { font-weight: 700; color: var(--brand); }
+
+  /* ── Add-ons table ── */
+  .addon-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 4px;
+    table-layout: fixed;
+  }
+  .addon-table colgroup col:nth-child(1) { width: 130px; }
+  .addon-table colgroup col:nth-child(2) { width: 115px; }
+  .addon-table colgroup col:nth-child(3) { width: auto; }
+  .addon-table colgroup col:nth-child(4) { width: 140px; }
+  .addon-table th {
+    background: var(--ink);
+    color: var(--white);
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .04em;
+  }
+  .addon-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    vertical-align: top;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .addon-table tr:nth-child(even) td { background: var(--surface); }
+  .addon-table td:first-child { font-weight: 600; color: var(--ink); }
+  .addon-table td:nth-child(2) { font-weight: 600; color: var(--brand); white-space: nowrap; }
+
+  /* ── Stats strip ── */
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 16px;
+  }
+  .stat-cell {
+    padding: 18px 16px;
+    border-right: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 6px; }
+  .stat-value { font-size: 17px; font-weight: 800; color: var(--brand); line-height: 1.2; }
+  .stat-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  /* ── Footer ── */
+  .doc-footer {
+    padding: 20px var(--gutter);
+    background: var(--surface);
+    border-top: 2px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .doc-footer strong { color: var(--ink); font-weight: 700; }
+
+  /* ── Print / PDF rules ── */
+  @media print {
+    @page {
+      size: A4;
+      margin: 14mm 14mm 16mm 14mm;
+    }
+
+    body { max-width: 100%; font-size: 11pt; }
+
+    .page {
+      padding: 0 0 24pt;
+      border-bottom: none;
+      page-break-after: always;
+    }
+    .page:last-child { page-break-after: auto; }
+
+    .cover { padding: 40pt 0 36pt; }
+
+    /* prevent orphaned callout titles */
+    .callout, .persona-card, tr { page-break-inside: avoid; }
+
+    /* keep tables together where possible */
+    .seq-table, .week-table, .addon-table { page-break-inside: auto; }
+    thead { display: table-header-group; }
+    tfoot { display: table-footer-group; }
+
+    /* no blue links */
+    a { color: inherit; text-decoration: none; }
+
+    .doc-footer { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ COVER ═══ -->
+<div class="cover">
+  <div class="cover-eyebrow">RightClick:AI · Prepared for SuperX AI Technology Limited</div>
+  <div class="cover-title">How We Think About<br>Your Campaign</div>
+  <div class="cover-subtitle">A look inside the process behind the proposal — persona strategy, multi-threading logic, Week 1 execution plan, and add-on modelling.</div>
+  <div class="cover-meta">Prepared by Bolun &nbsp;·&nbsp; March 2026 &nbsp;·&nbsp; Confidential</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ SECTION 1 ═══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-eyebrow">Differentiators</div>
+    <div class="section-title">What Sets Us Apart</div>
+    <div class="section-lead">How our approach differs — and what SuperX gets from it.</div>
+  </div>
+
+  <div class="callout-grid">
+
+    <div class="callout callout-numbered">
+      <div class="callout-num">1</div>
+      <div class="callout-body">
+        <div class="callout-title">Campaign built on your data, not a template.</div>
+        <div class="callout-text">The proposal we delivered was architected from SuperX's actual lead list and ICP — 4-tier segmentation across 37 industries, 4 buyer personas each with their own email sequence, 60 unique messaging variants, and volume projections modelled to your mailbox count. The attached appendix walks through the full thinking in detail.</div>
+      </div>
+    </div>
+
+    <div class="callout callout-numbered">
+      <div class="callout-num">2</div>
+      <div class="callout-body">
+        <div class="callout-title">Persona-level sequencing, not one-size-fits-all.</div>
+        <div class="callout-text">Each job function in the buying committee — Champion, Technical Buyer, Economic Buyer, Influencer — receives a separate campaign with distinct messaging angles. Outreach is staggered across personas at the same company so that when SuperX comes up internally, multiple stakeholders have already seen the name.</div>
+      </div>
+    </div>
+
+    <div class="callout callout-numbered">
+      <div class="callout-num">3</div>
+      <div class="callout-body">
+        <div class="callout-title">AI-driven optimisation from Week 1.</div>
+        <div class="callout-text">Split testing on subject lines, opening lines, and messaging angles runs continuously. Volume is reallocated toward winning variants automatically. Deliverability is monitored and managed across all sending domains. By month 3, the data shows exactly which personas, industries, and geographies are converting — and the campaign has already adapted.</div>
+      </div>
+    </div>
+
+    <div class="callout callout-numbered">
+      <div class="callout-num">4</div>
+      <div class="callout-body">
+        <div class="callout-title">Projections are modelled, not estimated.</div>
+        <div class="callout-text">0.8% baseline reply rate (conservative for this buyer profile). 18 mailboxes at 30 sends/day. 12,960 unique leads reached over 6 months. ~41 meetings at baseline. With multichannel add-ons active: reply rate moves to 2.0–2.5%, meetings to 120–150 — giving each of your 4 reps 3+ qualified meetings per week.</div>
+      </div>
+    </div>
+
+    <div class="callout callout-numbered">
+      <div class="callout-num">5</div>
+      <div class="callout-body">
+        <div class="callout-title">SGD 15K over 6 months. Minimal downside.</div>
+        <div class="callout-text">At SuperX's deal size, one closed opportunity from this programme represents a return in excess of 3,000× the total engagement cost. The programme is structured to generate pipeline, not just activity — with every reply triaged and handed off same-day.</div>
+      </div>
+    </div>
+
+    <div class="callout callout-accent">
+      We've attached the full campaign thinking — persona breakdowns, per-persona messaging tracks, multi-threading strategy, and Week 1 execution plan — as an appendix for your team's review.
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ SECTION 2 ═══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-eyebrow">On Testimonials</div>
+    <div class="section-title">What to Evaluate Instead</div>
+    <div class="section-lead">You've asked for testimonials from comparable engagements. Here's the honest answer: we don't have a case study at the $50M enterprise hardware deal size. We could dress something up, but that's not how we operate. What we'd ask you to evaluate instead is the work product you're already holding.</div>
+  </div>
+
+  <div class="callout-grid">
+
+    <div class="callout">
+      <div class="callout-body">
+        <div class="callout-title">The proposal is the proof.</div>
+        <div class="callout-text">Most outbound agencies hand you a templated deck and a price. We delivered a fully architected campaign — built on your actual lead data, your ICP, your market, and your deal dynamics — before a contract was signed. Tiered segmentation across 37 industries. Per-tier messaging angles. Deliverability infrastructure spec. An add-on stack with projected impact at each layer.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-body">
+        <div class="callout-title">Process depth is the moat.</div>
+        <div class="callout-text">At $50M deal sizes, the difference between 0.8% and 2% reply rate is the system behind it: how leads are tiered by propensity, how enrichment builds context, how Tier 1 contacts are researched individually, how AI split-tests and reallocates volume in real time, how replies are triaged same-day. A testimonial tells you someone was happy. The process tells you why it will work.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-body">
+        <div class="callout-title">Risk is near-zero.</div>
+        <div class="callout-text">The total programme cost is a rounding error against a single deal. At baseline projections — 0.8% reply rate, no add-ons, Scenario B — the campaign generates 41 meetings over 6 months. One conversion pays for the programme 3,000×. The downside is SGD 15K, the upside is the pipeline.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ SECTION 3 ═══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-eyebrow">Persona Strategy</div>
+    <div class="section-title">Every Buyer Persona Gets Their Own Campaign</div>
+    <div class="section-lead">SuperX's ICP data shows four distinct buyer personas in the decision chain. Each has a different job function, a different motivation, and a different reason to say yes or no. Sending them all the same email is leaving money on the table.</div>
+  </div>
+
+  <div class="callout callout-accent" style="margin-bottom: 28px;">
+    <strong>Same product. Different buyer. Different email.</strong><br>
+    A CTO evaluating AI servers cares about architecture, performance benchmarks, and deployment speed. A CFO evaluating the same purchase cares about TCO vs. cloud, capex vs. opex, and payback period. An IT Procurement Manager cares about vendor compliance, SLAs, and integration risk. If you send them all the same email, you're speaking to none of them. Each persona gets their own sequence with messaging built around what they actually care about.
+  </div>
+
+  <!-- Persona cards -->
+  <div class="section-header" style="margin-top: 0; margin-bottom: 20px;">
+    <div class="section-eyebrow">The Four Buyer Personas</div>
+  </div>
+
+  <div class="persona-grid">
+
+    <!-- Champion -->
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-icon">★</div>
+        <div>
+          <div class="persona-name">Champion</div>
+          <div class="persona-roles">CEO · CTO · CIO · Chief Data Officer · Head of AI · Director of Technology</div>
+        </div>
+      </div>
+      <div class="persona-body">
+        <div>
+          <div class="persona-col-label">What keeps them up at night</div>
+          <div class="persona-col-text">Competitive pressure to ship AI capabilities faster. Cloud GPU costs spiralling. Vendor lock-in with hyperscalers. Need to prove AI ROI to the board.</div>
+        </div>
+        <div>
+          <div class="persona-col-label">Messaging angle</div>
+          <div class="persona-col-text">Lead with innovation, speed, and competitive advantage. This buyer wants to know that SuperX makes them look smart to their board.</div>
+        </div>
+      </div>
+      <div class="persona-sample">
+        <div>
+          <div class="sample-label">Sample subject line</div>
+          <div class="sample-text">[Their company]'s AI roadmap + a question</div>
+        </div>
+        <div>
+          <div class="sample-label">Sample opener</div>
+          <div class="sample-text">Saw that [company] is scaling [specific AI initiative / hiring for AI roles]. Quick question — are you running that on cloud, on-prem, or a mix? Asking because we helped [similar company type] cut their compute costs by 40–60% while tripling deployment speed. Might be worth a 15-min conversation.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technical Buyer -->
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-icon">⚙</div>
+        <div>
+          <div class="persona-name">Technical Buyer</div>
+          <div class="persona-roles">IT Procurement Manager · Systems Engineer · AI Solutions Architect · Network Administrator · Cloud Solutions Engineer</div>
+        </div>
+      </div>
+      <div class="persona-body">
+        <div>
+          <div class="persona-col-label">What keeps them up at night</div>
+          <div class="persona-col-text">Reliability and uptime of AI infrastructure. Integration complexity. Scaling without re-architecting. GPU availability and lead times.</div>
+        </div>
+        <div>
+          <div class="persona-col-label">Messaging angle</div>
+          <div class="persona-col-text">Lead with specs, architecture, and deployment reality. This buyer needs to trust that SuperX works in their environment.</div>
+        </div>
+      </div>
+      <div class="persona-sample">
+        <div>
+          <div class="sample-label">Sample subject line</div>
+          <div class="sample-text">GPU availability in [region] — what we're seeing</div>
+        </div>
+        <div>
+          <div class="sample-label">Sample opener</div>
+          <div class="sample-text">Working with infrastructure teams across [region], the consistent challenge we're hearing is GPU availability and cloud lead times stretching to 3–6 months. We built SuperX specifically for this — dedicated AI servers that deploy in [X weeks] with guaranteed availability. Happy to share the architecture spec if it's relevant to what you're building.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Economic Buyer -->
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-icon">$</div>
+        <div>
+          <div class="persona-name">Economic Buyer</div>
+          <div class="persona-roles">CFO · Head of Procurement · VP of Finance · Financial Controller · Head of Strategy · Business Development Director</div>
+        </div>
+      </div>
+      <div class="persona-body">
+        <div>
+          <div class="persona-col-label">What keeps them up at night</div>
+          <div class="persona-col-text">Total cost of ownership vs. cloud. Capex justification. Budget predictability. ROI timeline. Clawback risk on cloud contracts.</div>
+        </div>
+        <div>
+          <div class="persona-col-label">Messaging angle</div>
+          <div class="persona-col-text">Lead with TCO, ROI, and financial predictability. This buyer doesn't care about specs — they care about the business case.</div>
+        </div>
+      </div>
+      <div class="persona-sample">
+        <div>
+          <div class="sample-label">Sample subject line</div>
+          <div class="sample-text">[Their company] + AI compute costs</div>
+        </div>
+        <div>
+          <div class="sample-label">Sample opener</div>
+          <div class="sample-text">At the compute volumes [company] is likely running, cloud GPU costs compound fast — we're seeing enterprises in [industry] overspending by $Xm/year vs. owned infrastructure. We built a TCO comparison for a similar organisation that showed 40–60% cost reduction over 3 years. Worth 15 minutes to see if the numbers apply?</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Influencer -->
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-icon">▲</div>
+        <div>
+          <div class="persona-name">Influencer</div>
+          <div class="persona-roles">Data Scientist · AI Engineer · AI Researcher · Data Architect · IT Manager · Software Developer</div>
+        </div>
+      </div>
+      <div class="persona-body">
+        <div>
+          <div class="persona-col-label">What keeps them up at night</div>
+          <div class="persona-col-text">Tools and infrastructure that let them do better work, faster. Frustrated by cloud limitations, GPU quotas, and environment constraints. Want to advocate for better infra internally.</div>
+        </div>
+        <div>
+          <div class="persona-col-label">Messaging angle</div>
+          <div class="persona-col-text">Lead with capability and empowerment. This buyer doesn't sign the PO, but they influence the person who does. Give them ammunition to advocate internally.</div>
+        </div>
+      </div>
+      <div class="persona-sample">
+        <div>
+          <div class="sample-label">Sample subject line</div>
+          <div class="sample-text">Quick resource for [their team / project area]</div>
+        </div>
+        <div>
+          <div class="sample-label">Sample opener</div>
+          <div class="sample-text">Sharing this because it might be useful for your team — we put together a benchmark comparing cloud GPU performance vs. dedicated AI server infrastructure for [workload type]. The short version: [key stat]. Happy to send the full report if it's relevant.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ SECTION 4 ═══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-eyebrow">Sequence Architecture</div>
+    <div class="section-title">How This Maps to Live Campaigns</div>
+    <div class="section-lead">In the live campaign, each persona runs as a separate sequence with its own messaging track. Here's how they interlock:</div>
+  </div>
+
+  <table class="seq-table">
+    <colgroup>
+      <col style="width: 72px;">
+      <col style="width: auto;">
+      <col style="width: auto;">
+      <col style="width: auto;">
+      <col style="width: auto;">
+    </colgroup>
+    <thead>
+      <tr>
+        <th></th>
+        <th>★ Champion</th>
+        <th>⚙ Technical Buyer</th>
+        <th>$ Economic Buyer</th>
+        <th>▲ Influencer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Email 1</td>
+        <td>Competitive advantage hook</td>
+        <td>Specs / architecture hook</td>
+        <td>TCO / cost comparison hook</td>
+        <td>Resource / benchmark offer</td>
+      </tr>
+      <tr>
+        <td>Email 2</td>
+        <td>Case study: similar company</td>
+        <td>Deployment speed proof point</td>
+        <td>ROI model / payback period</td>
+        <td>Technical deep-dive content</td>
+      </tr>
+      <tr>
+        <td>Email 3</td>
+        <td>Data sovereignty / regional insight</td>
+        <td>Integration / reliability data</td>
+        <td>Capex vs opex analysis</td>
+        <td>Internal advocacy angle</td>
+      </tr>
+      <tr>
+        <td>Email 4</td>
+        <td>Direct ask: 15-min call</td>
+        <td>Direct ask: architecture review</td>
+        <td>Direct ask: TCO walkthrough</td>
+        <td>Share-with-your-team CTA</td>
+      </tr>
+      <tr>
+        <td>Email 5</td>
+        <td>Breakup + final value drop</td>
+        <td>Breakup + spec sheet offer</td>
+        <td>Breakup + cost model offer</td>
+        <td>Breakup + report offer</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-accent" style="margin-top: 20px;">
+    This is <strong>4 distinct campaigns × 5 emails × 3 tiers = 60 unique messaging variants</strong> before split testing begins.
+  </div>
+
+  <!-- Multi-threading -->
+  <div class="section-header" style="margin-top: 36px;">
+    <div class="section-eyebrow">Multi-Threading</div>
+    <div class="section-title">Multi-Threading the Account</div>
+    <div class="section-lead">At $50M deal sizes, deals are closed by a buying committee. The per-persona campaign structure enables a strategy called multi-threading — reaching multiple stakeholders at the same company through different entry points.</div>
+  </div>
+
+  <div class="callout-grid">
+    <div class="callout">
+      <div class="callout-body">
+        <div class="callout-title">How multi-threading works</div>
+        <div class="callout-text">The CTO receives a competitive-advantage email. The CFO receives a TCO email. The IT Procurement lead receives a reliability email. None of them know the others got a message — but when SuperX comes up in their next infrastructure meeting, three people in the room have already heard the name. This is how you move from "cold outreach" to "they're already on our shortlist."</div>
+      </div>
+    </div>
+    <div class="callout callout-accent">
+      We stagger outreach across personas at the same account by <strong>3–5 days</strong> to avoid the appearance of a coordinated blast. The Champion is contacted first. Technical and Economic Buyers follow. Influencers receive a lighter-touch, resource-led sequence that gives them content to share upward.
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ SECTION 5 ═══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-eyebrow">Execution Plan</div>
+    <div class="section-title">What Happens in Week 1</div>
+    <div class="section-lead">If this engagement is confirmed, here's what the first week looks like:</div>
+  </div>
+
+  <table class="week-table">
+    <colgroup>
+      <col style="width: 90px;">
+      <col>
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Activity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Day 1</td>
+        <td>Kick-off call. Align on target personas, messaging priorities, and any accounts to prioritise or exclude. Receive access to lead data.</td>
+      </tr>
+      <tr>
+        <td>Day 2–3</td>
+        <td>Lead list audit. Tier assignment. Begin secondary email discovery and list expansion toward 15–20K target. Flag data quality issues.</td>
+      </tr>
+      <tr>
+        <td>Day 3–4</td>
+        <td>Persona mapping finalised. 4 campaign tracks defined with messaging angles per tier. Sample subject lines and openers drafted for review.</td>
+      </tr>
+      <tr>
+        <td>Day 4–5</td>
+        <td>Tier 1 individual research begins. LinkedIn profiles, published content, company news reviewed. Custom first lines drafted for first 50–100 contacts.</td>
+      </tr>
+      <tr>
+        <td>Day 5</td>
+        <td>Domain acquisition and mailbox setup guidance delivered. Warm-up begins (runs 3–4 weeks in parallel with copywriting).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-accent" style="margin-top: 20px;">
+    By end of Week 1, you have a complete campaign architecture — personas defined, messaging drafted, Tier 1 research underway, and infrastructure warming up. <strong>By Week 4, the first emails go out.</strong>
+  </div>
+
+  <!-- Add-ons -->
+  <div class="section-header" style="margin-top: 36px;">
+    <div class="section-eyebrow">Optional Add-Ons</div>
+    <div class="section-title">Multichannel Acceleration</div>
+    <div class="section-lead">The core engagement is email outbound. The add-ons below layer additional channels on top to increase reply rates and pipeline velocity. Each can be activated independently at any point during the engagement.</div>
+  </div>
+
+  <table class="addon-table">
+    <colgroup>
+      <col>
+      <col>
+      <col>
+      <col>
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Add-On</th>
+        <th>Fee (SGD)</th>
+        <th>What It Does</th>
+        <th>Expected Impact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>LinkedIn DM Sequence</td>
+        <td>SGD 600/mo + tool cost</td>
+        <td>Automated profile likes + personalised connection requests + DMs to accepted connections, timed to the email sequence.</td>
+        <td>Reply rate: 0.8% → 1.1–1.2% (+30–40% uplift)</td>
+      </tr>
+      <tr>
+        <td>Ads Retargeting</td>
+        <td>SGD 1,500 setup + SGD 800/mo + ad spend</td>
+        <td>Upload lead emails as custom audience. Brand awareness ads so prospects see SuperX 3–5× before and during the email sequence.</td>
+        <td>Reply rate: 1.1% → 1.8–2.0% (moves cold → warm-adjacent)</td>
+      </tr>
+      <tr>
+        <td>LinkedIn Thought Leadership</td>
+        <td>SGD 1,500 setup + SGD 1,000/mo + tool &amp; API cost</td>
+        <td>2–3 posts/week from SuperX founder/CTO. Content calendar aligned to campaign messaging. Tone guide + strategic engagement.</td>
+        <td>Compounds over 6 months (73% of execs say thought leadership drives product exploration)</td>
+      </tr>
+      <tr>
+        <td>Intent Signal Monitoring</td>
+        <td>SGD 400/mo + tool cost</td>
+        <td>Track companies actively researching AI servers / GPU procurement. Monitor government tenders (GeBIZ, JETRO, KONEPS). Flag high-intent leads for priority sequencing.</td>
+        <td>Intent leads convert 3–5× higher vs cold-scraped contacts</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="stats-strip">
+    <div class="stat-cell">
+      <div class="stat-label">Reply rate (all add-ons)</div>
+      <div class="stat-value">2.0–2.5%</div>
+      <div class="stat-sub">vs 0.8% baseline</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Replies over 6 months</div>
+      <div class="stat-value">300–375</div>
+      <div class="stat-sub">vs 104 baseline</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Meetings booked</div>
+      <div class="stat-value">120–150</div>
+      <div class="stat-sub">vs 41 baseline</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-label">Per rep / week (4 reps)</div>
+      <div class="stat-value">3.1–3.9</div>
+      <div class="stat-sub">vs 1.08 baseline</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ SECTION 6 ═══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-eyebrow">Summary</div>
+    <div class="section-title">In Summary</div>
+    <div class="section-lead">We don't have a testimonial from a $50M AI server campaign. What we have is:</div>
+  </div>
+
+  <div class="callout-grid">
+
+    <div class="callout">
+      <div class="callout-body">
+        <div class="callout-title">A campaign architecture built on your data — not a template.</div>
+        <div class="callout-text">37 industries segmented into 4 tiers. 4 buyer personas, each with their own campaign. 60 unique messaging variants. Volume math modelled to your exact mailbox count. Projected impact at every layer. This was built for SuperX. It can't be copy-pasted for anyone else.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-body">
+        <div class="callout-title">A process that compounds over time.</div>
+        <div class="callout-text">AI-driven split testing, real-time volume reallocation, deliverability intelligence, same-day reply triage. The campaign gets smarter every week. By month 3, we know which personas respond, which industries convert, and which messaging angles close — and we've already shifted volume accordingly.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-body">
+        <div class="callout-title">Skin in the game at SGD 15K.</div>
+        <div class="callout-text">This is not a six-figure agency retainer. It's SGD 15,000 over 6 months for a programme that generates pipeline against $50M deal opportunities. The maths doesn't need a testimonial to speak for itself.</div>
+      </div>
+    </div>
+
+    <div class="callout callout-accent" style="text-align:center; border-left: none; border-top: 3px solid var(--brand); border-radius: 6px; padding: 24px 32px; margin-top: 8px;">
+      <div style="font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); margin-bottom: 8px;">RightClick:AI</div>
+      <div style="font-size: 13px; color: var(--muted);">Prepared by Bolun &nbsp;·&nbsp; March 2026 &nbsp;·&nbsp; Confidential</div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="doc-footer">
+  <span><strong>RightClick:AI</strong> · SuperX Campaign Proposal</span>
+  <span>Prepared by Bolun · March 2026 · Confidential</span>
+</div>
+
+</body>
+</html>
