@@ -331,6 +331,51 @@
   }
   .doc-footer strong { color: var(--accent); font-weight: 800; }
 
+  /* ── Mobile responsive ── */
+  @media (max-width: 768px) {
+    :root { --gutter: 28px; }
+
+    body { margin: 0 auto; border-radius: 0; box-shadow: none; }
+
+    .masthead { padding: 40px var(--gutter) 24px; }
+    .masthead-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .masthead-right { text-align: left; }
+
+    .persona-body { grid-template-columns: 1fr; gap: 16px; }
+    .persona-sample { grid-template-columns: 1fr; gap: 16px; }
+
+    .seq-table, .week-table, .addon-table {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .stats-strip { grid-template-columns: repeat(2, 1fr); }
+
+    .doc-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 24px var(--gutter);
+    }
+  }
+
+  @media (max-width: 480px) {
+    :root { --gutter: 18px; }
+
+    .stats-strip { grid-template-columns: 1fr 1fr; }
+
+    .visual-break::after {
+      font-size: 9px;
+      letter-spacing: .12em;
+      padding: 8px 14px;
+      white-space: nowrap;
+    }
+
+    .section-title { font-size: 19px; }
+    .stat-value { font-size: 20px; }
+  }
+
   /* ── Print / PDF rules ── */
   @media print {
     @page { size: A4; margin: 15mm; }
